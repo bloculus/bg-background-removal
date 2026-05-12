@@ -189,11 +189,11 @@
         <img id="original-img" src="" alt="Original" />
       </div>
       <div class="image-card">
-        <label>Fond supprime</label>
-        <img id="result-img" src="" alt="Resultat" />
+        <label>Fond supprimé</label>
+        <img id="result-img" src="" alt="Résultat" />
       </div>
     </div>
-    <button id="download-btn">Telecharger le PNG</button>
+    <button id="download-btn">Télécharger le PNG</button>
     <button id="reset-btn">Traiter une autre image</button>
   </div>
 
@@ -209,6 +209,7 @@
 
     let resultBlob = null;
     let removeBackground = null;
+    let originalBaseName = 'image';
 
     // Load the library asynchronously — does not block UI events
     (async () => {
@@ -249,6 +250,7 @@
         }
       }
 
+      originalBaseName = file.name.replace(/\.[^/.]+$/, '');
       dropZone.style.display = 'none';
       result.style.display = 'none';
       status.innerHTML = '<span class="spinner"></span> Chargement du modele IA... (premiere fois : ~20s)';
@@ -257,10 +259,10 @@
       try {
         const blob = await removeBackground(file, {
           progress: (key, current, total) => {
-            if (total > 0) {
-              const pct = Math.round((current / total) * 100);
-              const label = key === 'compute:inference' ? 'Traitement en cours...' : `Chargement... ${pct}%`;
-              status.innerHTML = `<span class="spinner"></span> ${label}`;
+            if (key === 'compute:inference') {
+              status.innerHTML = '<span class="spinner"></span> Traitement en cours...';
+            } else if (current < total) {
+              status.innerHTML = '<span class="spinner"></span> Chargement du modele IA...';
             }
           }
         });
@@ -281,7 +283,7 @@
       if (!resultBlob) return;
       const a = document.createElement('a');
       a.href = URL.createObjectURL(resultBlob);
-      a.download = 'sans-fond.png';
+      a.download = originalBaseName + '-withoutbg.png';
       a.click();
     });
 
