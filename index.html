@@ -226,7 +226,7 @@
 <body>
 
   <h1>🪄 Suppression de fond</h1>
-  <p class="subtitle">Traitement 100 % local dans le navigateur - aucune image n'est envoyée sur un serveur externe</p>
+  <p class="subtitle">Traitement 100% local dans le navigateur - aucune image n'est envoyée sur un serveur externe</p>
 
   <div id="drop-zone">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -265,6 +265,7 @@
     const dropZone = document.getElementById('drop-zone');
     const fileInput = document.getElementById('file-input');
     const status = document.getElementById('status');
+    const subtitle = document.querySelector('.subtitle');
     const result = document.getElementById('result');
     const originalImg = document.getElementById('original-img');
     const resultImg = document.getElementById('result-img');
@@ -337,6 +338,7 @@
         resultBlob = blob;
         resultImg.src = URL.createObjectURL(blob);
         status.style.display = 'none';
+        subtitle.style.display = 'none';
         result.style.display = 'flex';
 
       } catch (err) {
@@ -357,7 +359,9 @@
     resetBtn.addEventListener('click', () => {
       result.style.display = 'none';
       dropZone.style.display = 'block';
+      subtitle.style.display = '';
       status.style.display = '';
+      status.innerHTML = '';
       fileInput.value = '';
       resultBlob = null;
     });
