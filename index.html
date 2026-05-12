@@ -61,7 +61,7 @@
     #drop-zone:hover,
     #drop-zone.drag-over {
       border-color: #981DFF;
-      background: #F9F0FF;
+      background: #EDD9FF;
       box-shadow: 0 8px 32px rgba(152, 29, 255, 0.14);
     }
 
@@ -115,6 +115,8 @@
       margin-top: 44px;
       width: 100%;
       max-width: 940px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .images {
@@ -179,15 +181,21 @@
 
     #reset-btn {
       background: none;
-      border: none;
-      color: #bbb;
+      border: 1.5px solid #ddd;
+      border-radius: 12px;
+      color: #666;
       cursor: pointer;
       font-family: inherit;
-      font-size: 0.85rem;
-      text-decoration: underline;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 12px 32px;
+      transition: border-color 0.2s, color 0.2s;
     }
 
-    #reset-btn:hover { color: #666; }
+    #reset-btn:hover {
+      border-color: #981DFF;
+      color: #981DFF;
+    }
 
     footer {
       margin-top: 60px;
@@ -297,11 +305,15 @@
       originalImg.src = URL.createObjectURL(file);
 
       try {
+        let lastKey = '';
         const blob = await removeBackground(file, {
           progress: (key, current, total) => {
-            if (key === 'compute:inference') {
+            const phase = key === 'compute:inference' ? 'inference' : 'loading';
+            if (phase === lastKey) return;
+            lastKey = phase;
+            if (phase === 'inference') {
               status.innerHTML = '<span class="spinner"></span> Traitement en cours...';
-            } else if (current < total) {
+            } else {
               status.innerHTML = '<span class="spinner"></span> Chargement du modèle IA...';
             }
           }
