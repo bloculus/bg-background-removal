@@ -1,6 +1,6 @@
 # bg-background-removal
 
-Outil de suppression de fond d'image, utilisable directement dans le navigateur sans installation.
+Outil de détourage d'image, utilisable directement dans le navigateur sans installation.
 
 **URL** : https://bloculus.github.io/bg-background-removal/
 
