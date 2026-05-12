@@ -253,7 +253,7 @@
       originalBaseName = file.name.replace(/\.[^/.]+$/, '');
       dropZone.style.display = 'none';
       result.style.display = 'none';
-      status.innerHTML = '<span class="spinner"></span> Chargement du modele IA... (premiere fois : ~20s)';
+      status.innerHTML = '<span class="spinner"></span> Chargement du modèle IA... (première fois : ~20s)';
       originalImg.src = URL.createObjectURL(file);
 
       try {
@@ -262,7 +262,7 @@
             if (key === 'compute:inference') {
               status.innerHTML = '<span class="spinner"></span> Traitement en cours...';
             } else if (current < total) {
-              status.innerHTML = '<span class="spinner"></span> Chargement du modele IA...';
+              status.innerHTML = '<span class="spinner"></span> Chargement du modèle IA...';
             }
           }
         });
