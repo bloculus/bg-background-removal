@@ -163,6 +163,16 @@
     }
 
     #reset-btn:hover { color: #555; }
+
+    footer {
+      margin-top: 48px;
+      font-size: 0.75rem;
+      color: #bbb;
+      text-align: center;
+    }
+
+    footer a { color: #bbb; text-decoration: underline; }
+    footer a:hover { color: #888; }
   </style>
 </head>
 <body>
@@ -196,6 +206,12 @@
     <button id="download-btn">Télécharger le PNG</button>
     <button id="reset-btn">Traiter une autre image</button>
   </div>
+
+  <footer>
+    Propulsé par <a href="https://github.com/imgly/background-removal-js" target="_blank">@imgly/background-removal</a>
+    &mdash; licence <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">AGPL-3.0</a>
+    &mdash; <a href="https://github.com/bloculus/bg-back-removal" target="_blank">Code source</a>
+  </footer>
 
   <script>
     const dropZone = document.getElementById('drop-zone');
