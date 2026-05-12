@@ -275,6 +275,7 @@
     let resultBlob = null;
     let removeBackground = null;
     let originalBaseName = 'image';
+    let modelUsed = false;
 
     // Load the library asynchronously — does not block UI events
     (async () => {
@@ -317,7 +318,9 @@
       originalBaseName = file.name.replace(/\.[^/.]+$/, '');
       dropZone.style.display = 'none';
       result.style.display = 'none';
-      status.innerHTML = '<span class="spinner"></span> Chargement du modèle IA... (première fois : ~20s)';
+      status.innerHTML = modelUsed
+        ? '<span class="spinner"></span> Traitement en cours...'
+        : '<span class="spinner"></span> Chargement du modèle IA... (première fois : ~20s)';
       originalImg.src = URL.createObjectURL(file);
 
       try {
@@ -335,6 +338,7 @@
           }
         });
 
+        modelUsed = true;
         resultBlob = blob;
         resultImg.src = URL.createObjectURL(blob);
         status.style.display = 'none';
