@@ -26,15 +26,23 @@
       font-size: 2.8rem;
       font-weight: 800;
       letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #981DFF 0%, #C060FF 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 0.2em;
       justify-content: center;
+    }
+
+    h1 .wand {
+      display: inline-block;
+      line-height: 1;
+    }
+
+    h1 .label {
+      background: linear-gradient(135deg, #981DFF 0%, #C060FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .subtitle {
@@ -230,7 +238,7 @@
 </head>
 <body>
 
-  <h1>🪄 Détourage express</h1>
+  <h1><span class="wand">🪄</span><span class="label">Détourage express</span></h1>
   <p class="subtitle">Traitement 100% local dans le navigateur - aucune image n'est envoyée sur un serveur externe</p>
 
   <div id="drop-zone">
